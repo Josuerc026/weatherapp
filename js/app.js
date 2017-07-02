@@ -1,6 +1,5 @@
 //WEATHER MINI APP USING JQUERY AJAX METHOD 
-//AND OPEN WEATHER API - REFERENCE API KEY 3d89d40ee37e08d8c9b4ec2095e623b7
-// EXAMPLE - http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=3d89d40ee37e08d8c9b4ec2095e623b7
+//AND OPEN WEATHER API - REFERENCE API KEY 
 
 $(document).ready(function(){
 
@@ -10,10 +9,9 @@ $(document).ready(function(){
   var weatherCall = function(){
 
   	var userzip = userInput.val();
+  	validateZip(userzip);
 
-  	    validateZip(userzip);
-
-      	$.ajax({
+    $.ajax({
          url: "http://api.openweathermap.org/data/2.5/weather?zip="+ userzip +",us&appid=3d89d40ee37e08d8c9b4ec2095e623b7",
          type: 'GET',
          data: {
@@ -29,10 +27,9 @@ $(document).ready(function(){
             console.log(data);
             console.log(data.name);
             console.log(data.weather[0].description);
-             console.log(data.weather[0].icon);
+            console.log(data.weather[0].icon);
             
             renderHTML(data);
-
          }
      });
   }  
@@ -42,6 +39,7 @@ $(document).ready(function(){
   	   	  alert("enter full zip");
   	   }
   }
+  
   var renderHTML = function(data){
             //temperature conversion
          	var convertemp = (1.8 * (data.main.temp - 273) + 32);
