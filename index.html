@@ -6,17 +6,18 @@
 <h1>Weather Mini</h1>
 <input type="text" maxlength="5">
 <button>check weather</button>
+<h2 id="time-of-day"></h2>
 <div id="weather-info">
 </div>
 <script id="weather-template" type="text/x-handlebars-template">
     <h2>{{name}}</h2>
     {{#each weather}}
-    <h3>{{this.description}}</h3>
+    <img src="http://openweathermap.org/img/w/{{this.icon}}.png"><h3>{{this.description}}</h3>
     {{/each}}
     <table>
         <tr>
            <td>Temperature</td>
-           <td>{{fahrenheit main.temp}}</td>
+           <td>{{fahrenheit main.temp}}&deg;F</td>
         </tr>
         <tr>
            <td>Humidity</td>

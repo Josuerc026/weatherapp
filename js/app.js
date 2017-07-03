@@ -1,6 +1,5 @@
 //WEATHER MINI APP USING JQUERY AJAX METHOD 
 //AND OPEN WEATHER API - REFERENCE API KEY 
-
 $(document).ready(function(){
 
   var userInput = $("input");
@@ -63,12 +62,32 @@ $(document).ready(function(){
             //weatherDescription += "</p>";
             //weatherInfoContainer.innerHTML = weatherDescription;
   }
+
+  var timeOfDay = function(){
+  	   var timeOfDayContainer = document.querySelector("#time-of-day");
+       var hour = new Date().getHours();
+       //IF HOUR IS BEFORE NOON (< 12pm)
+       if(hour < 12){
+             timeOfDayContainer.innerHTML = "Good Morning!";
+       }
+       //IF HOUR IS AFTER NOON (> 12pm and <= 5pm)
+       if(hour >= 12 && hour <= 17){
+             timeOfDayContainer.innerHTML = "Good Afternoon!";
+       }
+       //IF HOUR IS AFTER NOON (>= 6pm)
+       if(hour >= 18){
+       	     timeOfDayContainer.innerHTML = "Good Evening!";
+       }
+  }
+   
   $("button").on("click",weatherCall);
   $(document).keypress(function(e){
       if(e.which == 13 && userInput.val() !== "") {
           weatherCall();
       }
   });
+
+  timeOfDay();
 });
 
 
