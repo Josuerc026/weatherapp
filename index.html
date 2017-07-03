@@ -1,9 +1,33 @@
+<style>
+   table, td{
+   	  border: 1px solid black;
+   }
+</style>
 <h1>Weather Mini</h1>
 <input type="text" maxlength="5">
 <button>check weather</button>
-<div id="weather-info"></div>
+<div id="weather-info">
+</div>
+<script id="weather-template" type="text/x-handlebars-template">
+    <h2>{{name}}</h2>
+    {{#each weather}}
+    <h3>{{this.description}}</h3>
+    {{/each}}
+    <table>
+        <tr>
+           <td>Temperature</td>
+           <td>{{fahrenheit main.temp}}</td>
+        </tr>
+        <tr>
+           <td>Humidity</td>
+           <td>{{main.humidity}}</td>
+        </tr>
+    </table>
+ </script>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+
+<script src="node_modules/handlebars/dist/handlebars.js"></script>
 <script src="js/app.js"></script>

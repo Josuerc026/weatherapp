@@ -38,21 +38,31 @@ $(document).ready(function(){
   	   	  alert("enter full zip");
   	   }
   }
-
-  var renderHTML = function(data){
-            //temperature conversion
-         	var convertemp = (1.8 * (data.main.temp - 273) + 32);
+  //HELPER FUNCTION TO RETURN TEMPERATURE AS FAHRENHEIT 
+  Handlebars.registerHelper("fahrenheit", function(temp){
+  	        //temperature conversion
+            var convertemp = (1.8 * (temp - 273) + 32);
          	var tempString = convertemp.toString();
          	var fahrenheit = tempString.substring(0,tempString.indexOf('.'));
+         	return fahrenheit;
 
-         	var icon = "http://openweathermap.org/img/w/"+ data.weather[0].icon +".png";
-             
-            weatherDescription = "<img src='"+ icon +"'>"; //ICON
-            weatherDescription += "<h1>Weather in " + data.name + "</h1> "; //NAME OF CITY
-            weatherDescription += "<p>" + fahrenheit  + "&deg;F with " + data.weather[0].description; //BRIEF DESCRIPTION
-            weatherDescription += "</p>";
+  });
 
-            weatherInfoContainer.innerHTML = weatherDescription;
+  var renderHTML = function(data){
+
+         	var staticTemplate = document.getElementById("weather-template").innerHTML;
+         	var compiledTemp = Handlebars.compile(staticTemplate);
+         	var generated = compiledTemp(data);
+
+         	weatherInfoContainer.innerHTML = generated;
+
+         	//var icon = "http://openweathermap.org/img/w/"+ data.weather[0].icon +".png";
+            //weatherDescription = "<img src='"+ icon +"'>"; //ICON
+            //weatherDescription += "<h1>Weather in " + data.name + "</h1> "; //NAME OF CITY
+            //weatherDescription += "<p>" + fahrenheit  + "&deg;F with " + data.weather[0].description; //BRIEF DESCRIPTION
+            //weatherDescription += "</p>";
+            //weatherInfoContainer.innerHTML = weatherDescription;
+
   }
 
   $("button").on("click",weatherCall);
