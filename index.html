@@ -1,29 +1,57 @@
-<style>
-   table, td{
-   	  border: 1px solid black;
-   }
-</style>
-<h1>Weather Mini</h1>
-<input type="text" maxlength="5">
-<button>check weather</button>
+<link rel="stylesheet" href="css/style.css">
+<input type="text">
+<button id="query-submit">Search</button>
 <h2 id="time-of-day"></h2>
 <div id="weather-info">
 </div>
 <script id="weather-template" type="text/x-handlebars-template">
-    <h2>{{name}}</h2>
-    {{#each weather}}
-    <img src="http://openweathermap.org/img/w/{{this.icon}}.png"><h3>{{this.description}}</h3>
-    {{/each}}
-    <table>
-        <tr>
-           <td>Temperature</td>
-           <td>{{fahrenheit main.temp}}&deg;F</td>
-        </tr>
-        <tr>
-           <td>Humidity</td>
-           <td>{{main.humidity}}</td>
-        </tr>
-    </table>
+  <div id="location-overview">
+        <img src="{{current_observation.icon_url}}">
+        <div class="temps fahrenheit">
+          <h3>{{realTemp current_observation.temp_f}}&deg;F</h3>
+        </div>
+        <div class="temps celsius hide">
+          <h3>{{realTemp current_observation.temp_c}}&deg;C</h3>
+        </div>
+        <button class="scale-toggle">Celsius</button>
+        <h3>{{current_observation.weather}}</h3>
+        <h2>{{location.city}}, {{location.state}} {{location.zip}}</h2>
+        <div id="current-observation">
+            <table>
+                <tr>
+                   <td>Precipitation</td>
+                   <td>{{current_observation.precip_today_metric}}%</td>
+                </tr>
+                <tr>
+                   <td>Humidity</td>
+                   <td>{{current_observation.relative_humidity}}</td>
+                </tr>
+                <tr>
+                   <td>Wind</td>
+                   <td>{{current_observation.wind_mph}} mph</td>
+                </tr>
+            </table>
+      </div>
+</div>
+<div id="forecast-container">
+    <h3>Next 4 days</h3>
+      {{#each forecast.simpleforecast.forecastday}}
+          <table class="forecast-table">
+              <tr>
+                 <th>{{date.weekday_short}}</th>
+              </tr>
+              <tr>
+                <td><img src="{{icon_url}}"></td>
+              </tr>
+              <tr class="fahrenheit">
+                <td>{{high.fahrenheit}}/{{low.fahrenheit}}&deg;F</td>
+              </tr>
+              <tr class="celsius hide">
+                <td>{{high.celsius}}/{{low.celsius}}&deg;C</td>
+              </tr>
+          </table>
+      {{/each}}
+</div>
  </script>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"

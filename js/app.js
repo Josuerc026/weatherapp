@@ -1,5 +1,5 @@
-//WEATHER MINI APP USING JQUERY AJAX METHOD 
-//AND OPEN WEATHER API - REFERENCE API KEY 
+//WEATHER MINI APP USING JQUERY AJAX METHOD
+//AND OPEN WEATHER API - REFERENCE API KEY
 $(document).ready(function(){
 
   var userInput = $("input");
@@ -8,10 +8,10 @@ $(document).ready(function(){
   var weatherCall = function(){
 
   	var userzip = userInput.val();
-  	validateZip(userzip);
+  	//validateZip(userzip);
 
     $.ajax({
-         url: "http://api.openweathermap.org/data/2.5/weather?zip="+ userzip +",us&appid=3d89d40ee37e08d8c9b4ec2095e623b7",
+         url: "https://api.wunderground.com/api/78d3a733887193b4/forecast/geolookup/conditions/q/"+ userzip +".json",
          type: 'GET',
          data: {
          	format: "json"
@@ -25,28 +25,26 @@ $(document).ready(function(){
 
             //TEST RESPONSE IN THE CONSOLE
             console.log(data);
-            console.log(data.name);
-            console.log(data.weather[0].description);
-            console.log(data.weather[0].icon);
+            console.log(data.current_observation.icon_url);
+            console.log(data.location.city);
+            console.log(data.location.state);
+            console.log(data.location.zip);
+            console.log(data.current_observation.weather);
+            console.log(data.current_observation.temp_c);
+            console.log(data.current_observation.temp_f);
+            console.log(data.current_observation.precip_today_metric);
+            console.log(data.current_observation.relative_humidity);
          }
      });
-  }  
-
-  var validateZip = function(input){
-  	   if(input.length < 5){
-  	   	  alert("enter full zip");
-  	   }
   }
-
-  //HELPER FUNCTION TO RETURN TEMPERATURE AS FAHRENHEIT 
-
-  Handlebars.registerHelper("fahrenheit", function(temp){
-  	        //temperature conversion
-            var convertemp = (1.8 * (temp - 273) + 32);
-         	var tempString = convertemp.toString();
-         	var fahrenheit = tempString.substring(0,tempString.indexOf('.'));
-         	return fahrenheit;
-  });
+//HELPER FUNCTION TO RETURN FORMATTTED TEMPERATURE
+Handlebars.registerHelper('realTemp', function(temp){
+   var stringTemp = temp.toString();
+   if(stringTemp.indexOf(".") <= -1){
+       return stringTemp;
+   }
+   return stringTemp.substring(0, stringTemp.indexOf("."));
+});
 
   var renderHTML = function(data){
 
@@ -79,15 +77,50 @@ $(document).ready(function(){
        	     timeOfDayContainer.innerHTML = "Good Evening!";
        }
   }
-   
-  $("button").on("click",weatherCall);
+  var farOn = true;
+  var changeScale = function(toggleBtn){
+        var far = toggleBtn.previousElementSibling.previousElementSibling;
+        var cel = toggleBtn.previousElementSibling;
+        var forecastContainer = toggleBtn.parentNode.nextElementSibling;
+        var forecastCel = forecastContainer.querySelectorAll('.celsius');
+        var forecastFar = forecastContainer.querySelectorAll('.fahrenheit');
+        if(farOn === true){
+          far.classList.add("hide");
+          cel.classList.remove("hide");
+          for(var i = 0; i < forecastCel.length; i++){
+             forecastCel[i].classList.remove("hide");
+          }
+          for(var i = 0; i < forecastFar.length; i++){
+             forecastFar[i].classList.add("hide");
+          }
+          farOn = false;
+        }else{
+          far.classList.remove("hide");
+          cel.classList.add("hide");
+          for(var i = 0; i < forecastCel.length; i++){
+             forecastCel[i].classList.add("hide");
+          }
+          for(var i = 0; i < forecastFar.length; i++){
+             forecastFar[i].classList.remove("hide");
+          }
+          farOn = true;
+        }
+
+
+  }
+
+  $("button#query-submit").on("click",weatherCall);
   $(document).keypress(function(e){
       if(e.which == 13 && userInput.val() !== "") {
           weatherCall();
       }
   });
-
+  var active = function(e){
+      if(e.target.matches("button.scale-toggle")){
+        changeScale(e.target);
+      }
+  }
+  var scaleToggleButton = document.querySelector("body");
+  scaleToggleButton.onclick = active;
   timeOfDay();
 });
-
-
