@@ -22,21 +22,12 @@ $(document).ready(function(){
          dataType: "jsonp",
          success: function(data){
             renderHTML(data);
-
             //TEST RESPONSE IN THE CONSOLE
             console.log(data);
-            console.log(data.current_observation.icon_url);
-            console.log(data.location.city);
-            console.log(data.location.state);
-            console.log(data.location.zip);
-            console.log(data.current_observation.weather);
-            console.log(data.current_observation.temp_c);
-            console.log(data.current_observation.temp_f);
-            console.log(data.current_observation.precip_today_metric);
-            console.log(data.current_observation.relative_humidity);
          }
      });
   }
+
 //HELPER FUNCTION TO RETURN FORMATTTED TEMPERATURE
 Handlebars.registerHelper('realTemp', function(temp){
    var stringTemp = temp.toString();
@@ -47,24 +38,16 @@ Handlebars.registerHelper('realTemp', function(temp){
 });
 
   var renderHTML = function(data){
-
          	var staticTemplate = document.getElementById("weather-template").innerHTML;
          	var compiledTemp = Handlebars.compile(staticTemplate);
          	var generated = compiledTemp(data);
 
          	weatherInfoContainer.innerHTML = generated;
-         	//var icon = "http://openweathermap.org/img/w/"+ data.weather[0].icon +".png";
-            //weatherDescription = "<img src='"+ icon +"'>"; //ICON
-            //weatherDescription += "<h1>Weather in " + data.name + "</h1> "; //NAME OF CITY
-            //weatherDescription += "<p>" + fahrenheit  + "&deg;F with " + data.weather[0].description; //BRIEF DESCRIPTION
-            //weatherDescription += "</p>";
-            //weatherInfoContainer.innerHTML = weatherDescription;
   }
 
   var timeOfDay = function(){
   	   var timeOfDayContainer = document.querySelector("#time-of-day");
        var hour = new Date().getHours();
-       console.log(hour);
        //IF HOUR IS BEFORE NOON (>= 5 and < 12pm)
        if(hour >= 5 && hour < 12){
              timeOfDayContainer.innerHTML = "Good Morning!";
@@ -110,10 +93,7 @@ Handlebars.registerHelper('realTemp', function(temp){
           }
           farOn = true;
         }
-
-
   }
-
   $("button#query-submit").on("click",weatherCall);
   $(document).keypress(function(e){
       if(e.which == 13 && userInput.val() !== "") {
