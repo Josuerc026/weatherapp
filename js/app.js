@@ -64,8 +64,8 @@ Handlebars.registerHelper('realTemp', function(temp){
   var timeOfDay = function(){
   	   var timeOfDayContainer = document.querySelector("#time-of-day");
        var hour = new Date().getHours();
-       //IF HOUR IS BEFORE NOON (< 12pm)
-       if(hour < 12){
+       //IF HOUR IS BEFORE NOON (>= 5 and < 12pm)
+       if(hour >= 5 && hour < 12){
              timeOfDayContainer.innerHTML = "Good Morning!";
        }
        //IF HOUR IS AFTER NOON (> 12pm and <= 5pm)
