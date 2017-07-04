@@ -73,8 +73,11 @@ Handlebars.registerHelper('realTemp', function(temp){
              timeOfDayContainer.innerHTML = "Good Afternoon!";
        }
        //IF HOUR IS AFTER NOON (>= 6pm)
-       if(hour >= 18){
+       if(hour >= 18 && hour < 22){
        	     timeOfDayContainer.innerHTML = "Good Evening!";
+       }
+       if(hour >=22 && hour < 5){
+          timeOfDayContainer.innerHTML = "Good Night!";
        }
   }
   var farOn = true;
