@@ -1,0 +1,50 @@
+#weather-info{
+  width: 700px;
+  margin: 0 auto;
+}
+table,td{
+    border: 1px solid black;
+}
+#location-overview{
+   position: relative;
+    border: 1px solid black;
+}
+#location-overview .temps{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 4.6em;
+}
+#location-overview .temps h3{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+button.scale-toggle{
+
+}
+#current-observation{
+  border: 1px solid black;
+display: inline-block;
+position: absolute;
+top: 0;
+right: 0;
+}
+#forecast-container table{
+    float: left;
+    width: 25%;
+}
+#forecast-container table img{
+    display: block;
+    margin: auto;
+}
+#forecast-container table td{
+    text-align: center;
+}
+#forecast-container{
+    border: 1px solid black;
+    overflow: auto;
+    clear: both;
+}
+#weather-info .hide{
+  display: none;
+}
