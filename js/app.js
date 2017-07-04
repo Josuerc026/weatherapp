@@ -72,10 +72,11 @@ Handlebars.registerHelper('realTemp', function(temp){
        if(hour >= 12 && hour <= 17){
              timeOfDayContainer.innerHTML = "Good Afternoon!";
        }
-       //IF HOUR IS AFTER NOON (>= 6pm)
+       //IF HOUR IS AFTER 6 PM(>= 6pm and < 10pm)
        if(hour >= 18 && hour < 22){
        	     timeOfDayContainer.innerHTML = "Good Evening!";
        }
+       //IF HOUR IS AFTER 10PM(>= 10pm and < 5pm)
        if(hour >=22 && hour < 5){
           timeOfDayContainer.innerHTML = "Good Night!";
        }
