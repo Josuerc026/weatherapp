@@ -1,17 +1,30 @@
+<link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/style.css">
-<input type="text">
-<button id="query-submit">Search</button>
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+<div id="search-bar-container">
+  <div id="search-bar-container-content">
+    <h3 id="app-name">weather mini</h3>
+    <div id="search-bar">
+      <input type="text" placeholder="Rockville, MD or zip">
+      <button id="query-submit">Search</button>
+    </div>
+  </div>
+</div>
 <h2 id="time-of-day"></h2>
 <div id="weather-info">
 </div>
+<footer>
+  <p>Built by Josue Arce</p>
+  <p>Weather data provided by Weather Underground</p>
+</footer>
 <script id="weather-template" type="text/x-handlebars-template">
-  <div id="location-overview">
+  <div id="location-overview" class="animated bounceIn">
         <img src="{{current_observation.icon_url}}">
-        <div class="temps fahrenheit">
-          <h3>{{realTemp current_observation.temp_f}}&deg;F</h3>
+        <div class="animated fadeIn temps fahrenheit">
+          <h3>{{realTemp current_observation.temp_f}}</h3>
         </div>
-        <div class="temps celsius hide">
-          <h3>{{realTemp current_observation.temp_c}}&deg;C</h3>
+        <div class="animated fadeIn temps celsius hide">
+          <h3>{{realTemp current_observation.temp_c}}</h3>
         </div>
         <button class="scale-toggle">Celsius</button>
         <h3>{{current_observation.weather}}</h3>
@@ -33,7 +46,7 @@
             </table>
       </div>
 </div>
-<div id="forecast-container">
+<div id="forecast-container" class="animated bounceIn">
     <h3>Next 4 days</h3>
       {{#each forecast.simpleforecast.forecastday}}
           <table class="forecast-table">

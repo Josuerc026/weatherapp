@@ -1,37 +1,117 @@
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+html,body{
+  background: linear-gradient(#5499f7,#bedbe5);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+}
+#time-of-day{
+  font-size: 2.5em;
+  text-align: center;
+}
+#search-bar-container{
+  padding: 10px;
+  background: #4d89d7;
+  margin: 0px 0px 10px 0px;
+  overflow: auto;
+}
+#search-bar-container-content{
+  width: 900px;
+  margin: 0 auto;
+}
+#search-bar-container-content h3#app-name{
+  float: left;
+  margin: 0;
+}
+#search-bar{
+  float: right;
+}
+#search-bar button#query-submit{
+  border: none;
+  padding: 3px;
+  background: #FF9800;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
 #weather-info{
   width: 700px;
   margin: 0 auto;
-}
-table,td{
-    border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1;
 }
 #location-overview{
    position: relative;
-    border: 1px solid black;
+
+}
+button.scale-toggle{
+  border: none;
+  padding: 8px;
+  background: #FF9800;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.4s;
+
+
+}
+button.scale-toggle:hover{
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.5);
+
 }
 #location-overview .temps{
     display: inline-block;
     vertical-align: top;
-    font-size: 4.6em;
 }
 #location-overview .temps h3{
     margin: 0;
     padding: 0;
+    font-size: 9em;
     display: inline-block;
-}
-button.scale-toggle{
+    font-weight: 200;
 
 }
+#location-overview .temps.fahrenheit::after{
+  content: "\00b0 F";
+  vertical-align: top;
+  font-size: 2em;
+}
+#location-overview .temps.celsius::after{
+  content: "\00b0 C";
+  vertical-align: top;
+  font-size: 2em;
+}
 #current-observation{
-  border: 1px solid black;
 display: inline-block;
 position: absolute;
 top: 0;
 right: 0;
 }
+#current-observation table, #current-observation td{
+  border: 1px solid #fff;
+  border-collapse:collapse;
+  padding:5px;
+}
 #forecast-container table{
     float: left;
     width: 25%;
+}
+#forecast-container table{
+  border: none;
+  border-collapse: collapse;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+
+
 }
 #forecast-container table img{
     display: block;
@@ -39,12 +119,20 @@ right: 0;
 }
 #forecast-container table td{
     text-align: center;
+    font-size: 1.5em;
 }
 #forecast-container{
-    border: 1px solid black;
+    padding: 10px;
     overflow: auto;
     clear: both;
 }
 #weather-info .hide{
   display: none;
+}
+footer{
+  padding: 5px;
+  background: #4a4a4a;
+}
+footer p{
+  text-align: center;
 }

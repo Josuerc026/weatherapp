@@ -73,6 +73,7 @@ Handlebars.registerHelper('realTemp', function(temp){
         var forecastCel = forecastContainer.querySelectorAll('.celsius');
         var forecastFar = forecastContainer.querySelectorAll('.fahrenheit');
         if(farOn === true){
+          toggleBtn.innerHTML = "fahrenheit";
           far.classList.add("hide");
           cel.classList.remove("hide");
           for(var i = 0; i < forecastCel.length; i++){
@@ -83,6 +84,7 @@ Handlebars.registerHelper('realTemp', function(temp){
           }
           farOn = false;
         }else{
+          toggleBtn.innerHTML = "celsius";
           far.classList.remove("hide");
           cel.classList.add("hide");
           for(var i = 0; i < forecastCel.length; i++){
