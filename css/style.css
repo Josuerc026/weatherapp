@@ -15,6 +15,7 @@ html,body{
 #time-of-day{
   font-size: 2.5em;
   text-align: center;
+  margin: 0.45em;
 }
 #search-bar-container{
   padding: 10px;
@@ -43,11 +44,12 @@ html,body{
 }
 #weather-info{
   flex: 1;
-  width: 700px;
-  min-height: 500px;
+  width: 600px;
+  min-height: 100px;
   margin: 0 auto;
   border-radius: 8px;
   padding: 10px;
+  margin-bottom: 20px;
 }
 #location-overview{
    position: relative;
@@ -62,8 +64,6 @@ button.scale-toggle{
   cursor: pointer;
   text-decoration: underline;
   transition: 0.4s;
-
-
 }
 button.scale-toggle:hover{
   box-shadow: 0px 3px 12px rgba(0,0,0,0.5);
@@ -85,11 +85,17 @@ button.scale-toggle:hover{
   content: "\00b0 F";
   vertical-align: top;
   font-size: 2em;
+  position: relative;
+  top: 30px;
+  left: -10px;
 }
 #location-overview .temps.celsius::after{
   content: "\00b0 C";
   vertical-align: top;
   font-size: 2em;
+  position: relative;
+  top: 30px;
+  left: -10px;
 }
 #current-observation{
 display: inline-block;
